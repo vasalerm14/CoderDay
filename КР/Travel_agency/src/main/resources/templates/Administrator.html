@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="universal.css">
+    <link rel="stylesheet" type="text/css" href="Administrator.css">
+    <meta charset="UTF-8">
+    <title>Туристическое агенство</title>
+</head>
+<header>
+    <div class="logo">
+        <a href="/">
+            <img src="/flight.png" alt="Логотип">
+          </a>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="/Administrator">Панель Администратора</a></li>
+        <li><a href="/Client">Клиент</a></li>
+      </ul>
+    </nav>
+  </header>
+<body>
+    <h1>Администратор</h1>
+    <div class="container">
+        <div class="left">
+            <h2>Вывод всех туров</h2>
+
+        <table>
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Vouch name</th>
+                <th>Price</th>
+                <th>Col Day</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="voucher : ${vouchers}">
+                <td th:text="${voucher.id}"></td>
+                <td th:text="${voucher.name_vouch}"></td>
+                <td th:text="${voucher.price}"></td>
+                <td th:text="${voucher.col_day}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <h2>Вывод всех клиентов</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>First name</th>
+                <th>Surname</th>
+                <th>Phone</th>
+                <th>Vouch name</th>
+                <th>Price</th>
+                <th>Number of days</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="client : ${clients_all}">
+                <td th:text="${client.First_name}"></td>
+                <td th:text="${client.Surname}"></td>
+                <td th:text="${client.Phone}"></td>
+                <td th:text="${client.name_vouch}"></td>
+                <td th:text="${client.price}"></td>
+                <td th:text="${client.col_day}"></td>
+            </tr>
+            </tbody>
+        </table>
+        </div>
+        
+        <div class="right">
+            <div class="remove">
+                <h2>Удаление тура по id</h2>
+                <form method="post" action="/delete">
+                    <h3>id для удаления</h3>
+                    <input type="number" name="id" required>
+                    <input type="submit" value="Удалить">
+                </form>
+            </div>
+            <div class="add">
+                <h2>Добавление тура</h2>
+                <form method="post" action="/add">
+                    <h3>id для добавления</h3>
+                    <input type="number" name="id" required>
+                    <h3>Название тура</h3>
+                    <input type="text" name="name_vouch" required>
+                    <h3>Цена</h3>
+                    <input type="number" name="price" required>
+                    <h3>Количество дней</h3>
+                    <input type="number" name="col_day" required>
+                    <input type="submit" value="Добавить">
+                </form>
+            </div>
+        <div class="Search">
+            <h2>Поиск информации о клиенте</h2>
+            <table>
+                <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Surname</th>
+                    <th>Phone</th>
+                    <th>Vouch name</th>
+                    <th>Price</th>
+                    <th>Number of days</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="client : ${clients}">
+                    <td th:text="${client.First_name}"></td>
+                    <td th:text="${client.Surname}"></td>
+                    <td th:text="${client.Phone}"></td>
+                    <td th:text="${client.name_vouch}"></td>
+                    <td th:text="${client.price}"></td>
+                    <td th:text="${client.col_day}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <form method="post" action="/get_client_info">
+            <input type="text" name="Phone" required>
+            <input type="submit" value="Добавить">
+            </form>
+        </div>
+            <div class="Del_client">
+                <h2>Удаление клиента</h2>
+                <form method="post" action="/del_client">
+                    <h3>Имя</h3>
+                    <input type="text" name="First_name" required>
+                    <h3>Фамилия</h3>
+                    <input type="text" name="Surname" required>
+                    <h3>Телефон</h3>
+                    <input type="text" name="Phone" required>
+                    <input type="submit" value="Удалить">
+                </form>
+            </div>
+        <div class="total">
+            <h2>Заработано за все время</h2>
+            <tbody>
+                <td th:text="${total_value}"></td>
+            </tbody>
+            </dev>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+
+
+
+</body>
+</html>

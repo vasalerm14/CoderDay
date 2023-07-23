@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" type="text/css" href="universal.css">
+    <link rel="stylesheet" type="text/css" href="Client.css">
+    <meta charset="UTF-8">
+    <title>Туристическое агенство</title>
+</head>
+<header>
+  <div class="logo">
+      <a href="/">
+          <img src="/flight.png" alt="Логотип">
+        </a>
+  </div>
+  <nav>
+    <ul class="menu">
+      <li><a href="/Administrator">Панель Администратора</a></li>
+      <li><a href="/Client">Клиент</a></li>
+    </ul>
+  </nav>
+</header>
+<body>
+  <h1>Все доступные туры</h1>
+  <div class="container">
+    <div class="left">
+      <h2>Все туры</h2>
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Vouch name</th>
+          <th>Price</th>
+          <th>Col Day</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="voucher : ${vouchers}">
+          <td th:text="${voucher.id}"></td>
+          <td th:text="${voucher.name_vouch}"></td>
+          <td th:text="${voucher.price}"></td>
+          <td th:text="${voucher.col_day}"></td>
+        </tr>
+        </tbody>
+      </table>
+      <b></b>
+      <h2>Добавить выбранный тур</h2>
+      <form method="post" action="/add_vouch_client">
+        <h3>id тура</h3>
+        <input type="number" name="id" required>
+        <h3>Ваше Имя</h3>
+        <input type="text" name="First_name" required>
+        <h3>Ваша Фамилия</h3>
+        <input type="text" name="Surname" required>
+        <h3>Ваш номер телефона</h3>
+        <input type="text" name="Phone" required>
+        <input type="submit" value="Отправить">
+      </form>
+    </div>
+    <div class="right">
+        <img src="Moscow.webp">
+        <img src="Piter.jpg">
+        <img src="Kazan.jpeg">
+        <img src="Pikin.jpg">
+
+    </div>
+  </div>
+
+</body>
+</html>
